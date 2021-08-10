@@ -19,3 +19,4 @@ use App\Http\Controllers\PemberitahuanKGBController;
 Route::get('/', [BerandaController::class, 'index']);
 Route::get('/datakgb', [DataKGBController::class, "index"]);
 Route::get('/pemberitahuankgb', [PemberitahuanKGBController::class, 'index']);
+Route::view('/login', 'konten.v_login');
