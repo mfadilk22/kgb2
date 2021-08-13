@@ -10,14 +10,20 @@
 <div class="login-box-body">
     <p class="login-box-msg"> </p>
 
-    <form action="../../index2.html" method="post">
+    <form method="post" action="{{ route('login') }}">
+        @csrf
         <div class="form-group has-feedback">
-            <input type="email" class="form-control" placeholder="Id">
+            <input type="text" name="id" class="form-control" placeholder="Id">
             <span class="glyphicon glyphicon-user form-control-feedback"></span>
         </div>
         <div class="form-group has-feedback">
-            <input type="password" class="form-control" placeholder="Password">
+            <input type="password" name="password" class="form-control" placeholder="Password">
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            @error('password')
+                <span class="invalid-feedback" role="alert">
+                    <br><p class="label pull-left bg-red">Kolom tidak boleh kosong</p>
+                </span>
+            @enderror
         </div>
         <div class="row">
             <div class="col-xs-8">

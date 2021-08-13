@@ -9,6 +9,7 @@ class DataKGBController extends Controller
 {
     public function __construct()
     {
+        //$this->middleware('auth');
         $this->DataKGBModel = new DataKGBModel();
     }
     public function index(){

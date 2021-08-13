@@ -1,9 +1,13 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\DataKGBController;
 use App\Http\Controllers\PemberitahuanKGBController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +20,25 @@ use App\Http\Controllers\PemberitahuanKGBController;
 |
 */
 
-Route::get('/', [BerandaController::class, 'index']);
-Route::get('/datakgb', [DataKGBController::class, "index"]);
-Route::get('/pemberitahuankgb', [PemberitahuanKGBController::class, 'index']);
-Route::view('/login', 'konten.v_login');
+Route::get('/', [AuthController::class,'showFormLogin'])->name('login');
+Route::get('/datakgb', [DataKGBController::class, "index"])->name('datakgb');
+Route::get('/pemberitahuankgb', [PemberitahuanKGBController::class, 'index'])->name('pemberitahuankgb');
+// Route::view('/login', 'konten.v_login')->name('v_login');
+Route::get('/login', [AuthController::class,'showFormLogin'])->name('login');
+Route::post('/login', [AuthController::class,'login']);
+
+// Route::get('/', [AuthController::class,'showFormLogin'])->name('login');
+
+// Route::get('register', 'AuthController@showFormRegister')->name('register');
+// Route::post('register', 'AuthController@register');
+ 
+Route::group(['middleware' => 'auth'], function () {
+ 
+    Route::get('home', [BerandaController::class, 'index'])->name('beranda');
+    Route::get('logout', [AuthController::class,'logout'])->name('logout');
+ 
+});
+
+// Auth::routes();
+
+// Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('beranda');
