@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class BerandaController extends Controller
 {
-       
+      
     public function __construct()
     {
         $this->DataKGBModel = new DataKGBModel();

@@ -1,12 +1,13 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\DataKGBController;
 use App\Http\Controllers\PemberitahuanKGBController;
+use App\Http\Controllers\AuthController;
+use Illuminate\Http\Request;
 
 
 /*
@@ -31,10 +32,11 @@ Route::post('/login', [AuthController::class,'login']);
 
 // Route::get('register', 'AuthController@showFormRegister')->name('register');
 // Route::post('register', 'AuthController@register');
+Route::get('/beranda2', [BerandaController::class, 'index']);
  
 Route::group(['middleware' => 'auth'], function () {
  
-    Route::get('home', [BerandaController::class, 'index'])->name('beranda');
+    Route::get('/beranda', [BerandaController::class, 'index'])->name('beranda');
     Route::get('logout', [AuthController::class,'logout'])->name('logout');
  
 });

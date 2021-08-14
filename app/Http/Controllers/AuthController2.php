@@ -7,61 +7,53 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Admin;
+use App\Http\Controllers\Controller;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 
 class AuthController2 extends Controller
 {
-    public function showFormLogin()
+    use AuthenticatesUsers;
+
+    protected $maxAttempts = 3;
+    protected $decayMinutes = 2;
+
+    public function __construct()
     {
-        if (Auth::check()) { // true sekalian session field di users nanti bisa dipanggil via Auth
-            //Login Success
-            return redirect()->route('beranda');
-        }
+        $this->middleware('guest:admin')->except('postLogout');
+    }
+
+    public function getLogin()
+    {
         return view('konten.v_login');
     }
- 
-    public function login(Request $request)
+
+    public function postLogin(Request $request)
     {
-        $rules = [
-            'id'                    => 'required|string',
-            'password'              => 'required|string'
-        ];
- 
-        $messages = [
-            'id.required'           => 'id wajib diisi',
-            'password.required'     => 'Password wajib diisi',
-            'password.string'       => 'Password harus tidak cocok'
-        ];
- 
-        $validator = Validator::make($request->all(), $rules, $messages);
- 
-        if($validator->fails()){
-            return redirect()->back()->withErrors($validator)->withInput($request->all);
+        $this->validate($request, [
+            'email' => 'required|email',
+            'password' => 'required|min:5'
+        ]);
+
+        if (auth()->guard('admin')->attempt($request->only('email', 'password'))) {
+            $request->session()->regenerate();
+            $this->clearLoginAttempts($request);
+            return redirect()->intended();
+        } else {
+            $this->incrementLoginAttempts($request);
+
+            return redirect()
+                ->back()
+                ->withInput()
+                ->withErrors(["Incorrect user login details!"]);
         }
- 
-        $data = [
-            'id'        => $request->input('id'),
-            'password'  => $request->input('password'),
-        ];
- 
-        Auth::attempt($data);
- 
-        if (Auth::check()) { // true sekalian session field di users nanti bisa dipanggil via Auth
-            //Login Success
-            return redirect()->route('beranda');
- 
-        } else { // false
- 
-            //Login Fail
-            Session::flash('error', 'Id atau password salah');
-            return redirect()->route('login');
-        }
- 
     }
- 
-    public function logout()
+
+    public function postLogout()
     {
-        Auth::logout(); // menghapus session yang aktif
-        return redirect()->route('login');
+        auth()->guard('admin')->logout();
+        session()->flush();
+
+        return redirect()->route('admin.login');
     }
 }
