@@ -21,25 +21,27 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', [AuthController::class,'showFormLogin'])->name('login');
+Route::get('/', [BerandaController::class, 'index'])->name('beranda');
+//Route::get('/', [BerandaController::class, 'selisih_tgl']);
 Route::get('/datakgb', [DataKGBController::class, "index"])->name('datakgb');
 Route::get('/pemberitahuankgb', [PemberitahuanKGBController::class, 'index'])->name('pemberitahuankgb');
-// Route::view('/login', 'konten.v_login')->name('v_login');
-Route::get('/login', [AuthController::class,'showFormLogin'])->name('login');
-Route::post('/login', [AuthController::class,'login']);
 
+
+//ROUTE DI BAWAH KALO UDAH BISA AUTH CONTROLLER
 // Route::get('/', [AuthController::class,'showFormLogin'])->name('login');
+// Route::get('/datakgb', [DataKGBController::class, "index"])->name('datakgb');
+// Route::get('/pemberitahuankgb', [PemberitahuanKGBController::class, 'index'])->name('pemberitahuankgb');
+// Route::get('/login', [AuthController::class,'showFormLogin'])->name('login');
+// Route::post('/login', [AuthController::class,'login']);
 
-// Route::get('register', 'AuthController@showFormRegister')->name('register');
-// Route::post('register', 'AuthController@register');
-Route::get('/beranda2', [BerandaController::class, 'index']);
+// Route::get('/beranda2', [BerandaController::class, 'index']);
  
-Route::group(['middleware' => 'auth'], function () {
+// Route::group(['middleware' => 'auth'], function () {
  
-    Route::get('/beranda', [BerandaController::class, 'index'])->name('beranda');
-    Route::get('logout', [AuthController::class,'logout'])->name('logout');
+//     Route::get('/beranda', [BerandaController::class, 'index'])->name('beranda');
+//     Route::get('logout', [AuthController::class,'logout'])->name('logout');
  
-});
+// });
 
 // Auth::routes();
 

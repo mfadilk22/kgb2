@@ -9,13 +9,42 @@ class DataKGBController extends Controller
 {
     public function __construct()
     {
-        //$this->middleware('auth');
-        $this->DataKGBModel = new DataKGBModel();
+        $this->KGBPegawai = new DataKGBModel();
+        $this->Selisih = new DataKGBModel();
+        $this->sortedDate = new DataKGBModel();
     }
     public function index(){
-        $data = [
-            "kgb" => $this->DataKGBModel->allData(),
+                
+        $tanggal = [
+            "tanggal" => $this->KGBPegawai->formatTanggal(),
         ];
-        return view("konten.v_datakgb", $data);
+
+        $data = [
+            "kgb" => $this->KGBPegawai->allData(),                        
+        ];
+
+        $tanggal_skrg = [
+            "selisih" => $this->KGBPegawai->selisihTanggal(),
+            // "selisih" => $selisih,
+        ];
+
+        $sortedDate = [
+            "sortedDate" => $this->sortedDate->sortedDate(),
+        ];        
+
+        return view("konten.v_datakgb")
+                    ->with($data)
+                    ->with($tanggal_skrg)
+                    ->with($sortedDate)
+                    ->with($tanggal);
+    }
+
+    //Function untuk tes cari selisih tanggal
+    //Kalo udah bisa pindahin ke DataKGB
+    public function selisih_tgl(){
+        $tanggal = [
+            "tanggal" => $this->KGBPegawai->formatTanggal(),
+        ];
+        return view("konten.v_beranda", $tanggal);
     }
 }

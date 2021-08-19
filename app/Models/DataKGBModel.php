@@ -9,12 +9,38 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class DataKGBModel extends Model
 {
+    
+    protected $primaryKey = 'id_peg';
+    protected $table = "pegawai";
+    public $timestamps = false;
+
     public function allData(){
-        return DB::table('pegawai')->get();
+        $kgb = DataKGBModel::all();
+        return $kgb;
     }
 
     public function formatTanggal(){
-        $tanggal =  DB::table('pegawai')->pluck("tgl_kgb");        
+        $tanggal =  DataKGBModel::all("tgl_kgb");        
         return $tanggal;
+    }
+
+    public function selisihTanggal(){
+        $tanggal = DataKGBModel::select("tgl_kgb")->get();
+        $selisih = [];
+
+        foreach($tanggal as $tanggal){
+            array_push( $selisih, Carbon::parse($tanggal->tgl_kgb)->diffInDays(now()));
+        }
+                       
+        return $selisih;
+    }
+
+    public function sortedDate(){
+        $tanggal = collect(DataKGBModel::all());
+        
+        $sorted = $tanggal->sortBy('tgl_kgb');
+        $sorted->all();
+                               
+        return $sorted;
     }
 }

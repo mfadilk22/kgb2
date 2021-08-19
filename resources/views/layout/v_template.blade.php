@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" class="notranslate" translate="no">
 <head>
+  <meta name="google" content="notranslate" >
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>@yield("judul") | KGB BPS Aceh Utara</title>
@@ -53,9 +54,9 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
+    {{-- <section class="content-header">
       @yield('judul')      
-    </section>
+    </section> --}}
 
     <!-- Main content -->
     <section class="content">    

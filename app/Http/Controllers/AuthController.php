@@ -40,27 +40,33 @@ class AuthController extends Controller
         }
  
         $data = [
-            'user'      => $request->input('user'),
-            'password'  => $request->input('password'),
+            'user'      =>$request->user,
+            'password'  => $request->password,
         ];
         
         Auth::attempt($data);
+        dd($data);
  
         if (Auth::check()) { // true sekalian session field di users nanti bisa dipanggil via Auth
             //Login Success
             return redirect()->route('beranda');
  
-        } else { // false
+        } 
+        else { // false
  
             //Login Fail
             Session::flash('error', 'User atau password salah');
             return redirect()->route('login');
         } 
+        
     }
- 
+    
+    
     public function logout()
     {
         Auth::logout(); // menghapus session yang aktif
         return redirect()->route('login');
     }
+
+    
 }

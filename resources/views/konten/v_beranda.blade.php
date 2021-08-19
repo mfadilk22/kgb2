@@ -2,7 +2,25 @@
 @section('judul', 'Beranda')
 
 @section('konten')
-    <p>Tanggal: {{ now()->isoFormat("D MMM YYYY") }}</p>
+    @foreach ($selisih as $selisih)
+        @if ($selisih > 33)
+            <div class="callout callout-danger">
+                <h4>Mohon untuk melakukan pemberitahuan KGB</h4>
+                <p>Silakan menuju halaman <a href="{{ route('pemberitahuankgb') }}"><strong>Pemberitahuan KGB </strong></a></p>
+            </div>
+        @break
+        @endif
+    @endforeach
+    
+    <p class="btn bg-navy margin">Tanggal: <strong>{{ now()->isoFormat("D MMM YYYY") }} </strong></p>
+    {{-- <p>Selisih tgl KGB dgn Hari ini:
+        @foreach ($selisih as $selisih)
+            <p>{{ $selisih }}</p>
+        @endforeach
+    </p>
+    @foreach ($tanggal as $tanggal)
+        {{ \Carbon\Carbon::parse($tanggal->tgl_kgb)->isoFormat("D MMM YYYY") }}<br>
+    @endforeach --}}
     <div class="box box-primary">
         <div class="box-header">
             <h3 class="box-title">Tabel KGB Pegawai</h3>
@@ -11,33 +29,30 @@
             <table class = "table table-bordered table-hover">      
                     
                 <thead class="box">
-                    <tr>
-                        <th>Id Pegawai</th>
-                        <th>NIP</th>
+                    <tr>                       
                         <th>Nama</th>
+                        <th>NIP</th>
                         <th>Jenis Kelamin</th>
                         <th>Tanggal KGB</th>
                         <th>No HP</th>
-                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody class="box">
-                    @foreach ($kgb as $kgb)
-                        <tr>
-                            <td>{{ $kgb->id_peg }}</td>
-                            <td>{{ $kgb->nip }}</td>
+                    @foreach ($sortedDate as $kgb)
+                        <tr>                            
                             <td>{{ $kgb->nama }}</td>
+                            <td>{{ $kgb->nip }}</td>
                             <td>{{ $kgb->jk }}</td>
-                            <td>{{ $kgb->tgl_kgb }}</td>
+                            <td>{{ Carbon\Carbon::parse($kgb->tgl_kgb)->isoFormat("D MMM YYYY") }}
+                            </td>
                             <td>{{ $kgb->no_hp }}</td>
-                            <td><a href="" class="btn btn-block btn-success">Proses</a></td>
                         </tr>
                     @endforeach
                 </tbody>        
             </table>
         </div>    
     </div>
-    {{-- @foreach ($fadil as $tgl)
-        {{ $tgl->nip }}<br>
+    {{-- @foreach ($tanggal as $tanggal)
+        {{ $tanggal->tgl_kgb }}
     @endforeach --}}
 @endsection
