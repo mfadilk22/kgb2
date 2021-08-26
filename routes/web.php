@@ -26,7 +26,7 @@ Route::get('/', [BerandaController::class, 'index'])->name('beranda');
 //Route::get('/', [BerandaController::class, 'selisih_tgl']);
 Route::get('/datakgb', [DataKGBController::class, "index"])->name('datakgb');
 Route::get('/pemberitahuankgb', [PemberitahuanKGBController::class, 'index'])->name('pemberitahuankgb');
-Route::post('/order',[PesanController::class, 'store'])->name('order');
+Route::post('/kirim',[PesanController::class, 'kirim'])->name('order');
 
 
 //ROUTE DI BAWAH KALO UDAH BISA AUTH CONTROLLER

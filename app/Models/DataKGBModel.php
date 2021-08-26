@@ -44,7 +44,7 @@ class DataKGBModel extends Model
         return $sorted;
     }
 
-    public function routeNotificationForWhatsApp(){
+    public function nomorhp(){
         $no_hp = DataKGBModel::select("no_hp")->get();
         return $no_hp;
     }
