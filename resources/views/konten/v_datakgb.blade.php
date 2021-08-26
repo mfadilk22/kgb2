@@ -2,13 +2,12 @@
 @section('judul', 'Data KGB')
 
 @section('konten')
-
 @php
     $flag = true;
 @endphp
 
 @foreach ($selisih as $beda)
-    @if ($beda < 200)
+    @if ($beda < 33)
         {{ $flag = false }}
         @break              
     @endif    
@@ -41,7 +40,7 @@
             </thead>
             <tbody class="box">
                 @foreach ($sortedDate as $kgb)
-                    @if( Carbon\Carbon::parse($kgb->tgl_kgb)->diffInDays(now()) < 200 ) <tr>
+                    @if( Carbon\Carbon::parse($kgb->tgl_kgb)->diffInDays(now()) < 33 ) <tr>
                         <td>{{ $kgb->nama }}</td>
                         <td>{{ $kgb->nip }}</td>
                         <td>{{ $kgb->jk }}</td>

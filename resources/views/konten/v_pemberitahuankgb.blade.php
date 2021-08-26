@@ -11,7 +11,8 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-                <form role="form">                    
+                <form role="form" action="{{ route('order') }}" method="post">     
+                  @csrf               
                     <!-- select -->
                     
                     <div class="form-group">
@@ -63,7 +64,7 @@
                   </script>
                     <div class="form-group">
                         <label>Isi Pesan</label>
-                        <textarea class="form-control" onclick="displayRadioValue()" name = "isi" id="textarea" rows="6" placeholder="Klik di sini untuk menampilkan isi pesan"></textarea>
+                        <textarea class="form-control" onclick="displayRadioValue()" name = "pesan" id="textarea" rows="6" placeholder="Klik di sini untuk menampilkan isi pesan"></textarea>
                     </div>                   
 
                     <div class="box-footer">
@@ -95,7 +96,7 @@
               </thead>
               <tbody class="box">
                   @foreach ($sortedDate as $kgb)
-                      @if(Carbon\Carbon::parse($kgb->tgl_kgb)->diffInDays(now()) < 160)
+                      @if(Carbon\Carbon::parse($kgb->tgl_kgb)->diffInDays(now()) < 33)
                           <tr>
                               
                               <td>{{ $kgb->nama }}</td>
