@@ -11,7 +11,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-                <form role="form">                    
+                <form role="form" action="{{ route('order') }}" method="post">                    
                     <!-- select -->
                     
                     <div class="form-group">
@@ -95,7 +95,7 @@
               </thead>
               <tbody class="box">
                   @foreach ($sortedDate as $kgb)
-                      @if(Carbon\Carbon::parse($kgb->tgl_kgb)->diffInDays(now()) < 160)
+                      @if(Carbon\Carbon::parse($kgb->tgl_kgb)->diffInDays(now()) < 33)
                           <tr>
                               
                               <td>{{ $kgb->nama }}</td>
