@@ -19,7 +19,7 @@
                         <label>Pilih isi pesan</label>
                         <div class="radio">
                           <label>
-                            <input type="radio" name="optionsRadios" value = "Assalamualaikum wr.wb. Bapak/Ibu Berikut pesan ini kami sampaikan bahwa Bapak/Ibu akan melakukan KGB pada bulan berikutnya. Terima Kasih. Wassalam" checked>
+                            <input type="radio" name="pesan" value = "Assalamualaikum wr.wb. Bapak/Ibu Berikut pesan ini kami sampaikan bahwa Bapak/Ibu akan melakukan KGB pada bulan berikutnya. Terima Kasih. Wassalam" checked>
                             Assalamualaikum wr.wb Bapak/Ibu
                             Berikut pesan ini kami sampaikan bahwa Bapak/Ibu akan melakukan KGB pada bulan berikutnya. Terima Kasih.
                             Wassalam
@@ -27,7 +27,7 @@
                         </div>
                         <div class="radio">
                           <label>
-                            <input type="radio" name="optionsRadios" value="Assalamualaikum wr.wb Bapak/Ibu Pemberitahuan bagi Bapak/Ibu pegawai BPS Aceh Utara, bahwa Bapak/Ibu akan melakukan KGB pada bulan depan. Terima Kasih. Wassalam">
+                            <input type="radio" name="pesan" value="Assalamualaikum wr.wb Bapak/Ibu Pemberitahuan bagi Bapak/Ibu pegawai BPS Aceh Utara, bahwa Bapak/Ibu akan melakukan KGB pada bulan depan. Terima Kasih. Wassalam">
                             Assalamualaikum wr.wb Bapak/Ibu
                             Pemberitahuan bagi Bapak/Ibu pegawai BPS Aceh Utara, bahwa Bapak/Ibu akan melakukan KGB pada bulan depan. Terima Kasih.
                             Wassalam
@@ -35,14 +35,14 @@
                         </div>
                         <div class="radio">
                           <label>
-                            <input type="radio" name="optionsRadios" value="Assalamualaikum wr.wb Bapak/Ibu Bagi Bapak/Ibu pegawai BPS Aceh Utara, berikut pesan ini disampaikan sebagai pemberitahuan bagi Bapak/Ibu untuk melakukan KGB di bulan depan. Terima Kasih. Wassalam">
+                            <input type="radio" name="pesan" value="Assalamualaikum wr.wb Bapak/Ibu Bagi Bapak/Ibu pegawai BPS Aceh Utara, berikut pesan ini disampaikan sebagai pemberitahuan bagi Bapak/Ibu untuk melakukan KGB di bulan depan. Terima Kasih. Wassalam">
                             Assalamualaikum wr.wb Bapak/Ibu
                             Bagi Bapak/Ibu pegawai BPS Aceh Utara, berikut pesan ini disampaikan sebagai pemberitahuan bagi Bapak/Ibu untuk melakukan KGB di bulan depan. Terima Kasih.
                             Wassalam
                           </label>
                         <div class="radio ">
                           <label>
-                            <input type="radio" name="optionsRadios" value="Assalamualaikum wr.wb Bapak/Ibu. Berikut pesan ini kami sampaikan bahwa Bapak/Ibu akan melakukan KGB pada bulan berikutnya. Terima Kasih. Wassalam">
+                            <input type="radio" name="pesan" value="Assalamualaikum wr.wb Bapak/Ibu. Berikut pesan ini kami sampaikan bahwa Bapak/Ibu akan melakukan KGB pada bulan berikutnya. Terima Kasih. Wassalam">
                             Assalamualaikum wr.wb Bapak/Ibu
                             Berikut pesan ini kami sampaikan bahwa Bapak/Ibu akan melakukan KGB pada bulan berikutnya. Terima Kasih.
                             Wassalam
@@ -53,7 +53,7 @@
                     <!-- textarea -->
                     <script>
                       function displayRadioValue() {
-                          var ele = document.getElementsByName('optionsRadios');
+                          var ele = document.getElementsByName('pesan');
                             
                           for(i = 0; i < ele.length; i++) {
                               if(ele[i].checked)
@@ -64,7 +64,7 @@
                   </script>
                     <div class="form-group">
                         <label>Isi Pesan</label>
-                        <textarea class="form-control" onclick="displayRadioValue()" name = "pesan" id="textarea" rows="6" placeholder="Klik di sini untuk menampilkan isi pesan"></textarea>
+                        <textarea class="form-control" onclick="displayRadioValue()" id="textarea" rows="6" placeholder="Klik di sini untuk melihat isi pesan"></textarea>
                     </div>                   
 
                     <div class="box-footer">
