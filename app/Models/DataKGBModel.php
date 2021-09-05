@@ -45,8 +45,12 @@ class DataKGBModel extends Model
     }
 
     public function nomorhp(){
-        $data = collect(DataKGBModel::all());
-        
+        $data = collect(DataKGBModel::all());        
         return $data;                  
     }    
+
+    public function prosestgl(){
+        $tanggal = DataKGBModel::select("tgl_kgb")->get();
+        return $tanggal;
+    }
 }
