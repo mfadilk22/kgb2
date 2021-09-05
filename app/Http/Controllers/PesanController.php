@@ -23,13 +23,14 @@ class PesanController extends Controller
             $sid    = getenv("TWILIO_AUTH_SID"); 
             $token  = getenv("TWILIO_AUTH_TOKEN"); 
             $twilio = new Client($sid, $token);
+
             foreach ($data as $dataa ) {
                 if(Carbon::parse($dataa->tgl_kgb)->diffInDays(now()) < 33){
                     $message = $twilio->messages 
                                 ->create("whatsapp:".$dataa->no_hp, // to 
                                     [
                                         "from" => "whatsapp:+14155238886",
-                                        "body" => "[".$dataa->nama."]"." ".request("pesan")
+                                        "body" => "[".$dataa->nama."]"."\n".request("pesan")
                                     ]
                                 );
                 }

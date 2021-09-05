@@ -5,8 +5,17 @@
     @foreach ($selisih as $selisih)
         @if ($selisih > 33)
             <div class="callout callout-danger">
-                <h4>Mohon untuk melakukan pemberitahuan KGB</h4>
-                <p>Silakan menuju halaman <a href="{{ route('pemberitahuankgb') }}"><strong>Pemberitahuan KGB </strong></a></p>
+                <h4>Karyawan yang akan KGB :</h4>
+                @foreach ($sortedDate as $kgb)
+                    @if( Carbon\Carbon::parse($kgb->tgl_kgb)->diffInDays(now()) < 33 )
+                    <ul>
+                        <li>{{ $kgb->nama }}</li>
+                    </ul>
+                    @endif
+                @endforeach
+                
+                <p>Silakan melakukan proses KGB pada halaman halaman <a href="{{ route('datakgb') }}"><strong>Data KGB</strong></a></p>
+                <p>Mohon melakukan pemberitahuan kepada karyawan yang bersangkutan <a href="{{ route('pemberitahuankgb') }}"><strong>Pemberitahuan KGB</strong></a></p>
             </div>
         @break
         @endif
