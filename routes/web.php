@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\DataKGBController;
 use App\Http\Controllers\PesanController;
+use App\Http\Controllers\ProsesController;
 use App\Http\Controllers\PemberitahuanKGBController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
@@ -26,7 +27,9 @@ Route::get('/', [BerandaController::class, 'index'])->name('beranda');
 //Route::get('/', [BerandaController::class, 'selisih_tgl']);
 Route::get('/datakgb', [DataKGBController::class, "index"])->name('datakgb');
 Route::get('/pemberitahuankgb', [PemberitahuanKGBController::class, 'index'])->name('pemberitahuankgb');
-Route::post('/kirim',[PesanController::class, 'kirim'])->name('order');
+Route::post('/kirim',[PesanController::class, 'kirim'])->name('kirim');
+Route::post('/proses',[ProsesController::class, 'update'])->name('proses');
+Route::get('/login', [AuthController::class,'showFormLogin'])->name('login');
 
 
 //ROUTE DI BAWAH KALO UDAH BISA AUTH CONTROLLER

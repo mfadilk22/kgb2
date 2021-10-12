@@ -20,6 +20,7 @@ class PesanController extends Controller
     {         
         $data = $this->data->nomorhp();
         if (request()->isMethod('post')){
+            
             $sid    = getenv("TWILIO_AUTH_SID"); 
             $token  = getenv("TWILIO_AUTH_TOKEN"); 
             $twilio = new Client($sid, $token);

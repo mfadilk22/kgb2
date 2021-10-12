@@ -13,9 +13,13 @@ class ProsesController extends Controller
         $this->tanggal = new DataKGBModel();
     }
 
-    public function index(){
-        $tanggal = [
-            "tanggal" => $this->KGBPegawai->prosestgl(),
-        ];
+    public function update(Request $request){
+        // dd($request);
+        // $tanggal = [
+        //     "tanggal" => $this->KGBPegawai->prosestgl(),
+        // ];
+        // return redirect()->route('datakgb');
+
+        return request();
     }
 }

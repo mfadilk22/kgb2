@@ -2,8 +2,13 @@
 @section('judul', 'Beranda')
 
 @section('konten')
-    @foreach ($selisih as $selisih)
-        @if ($selisih > 33)
+@php
+    $flag = true;
+@endphp
+
+    @foreach ($selisih as $beda)
+        @if ($beda < 33)
+            {{ $flag = false }}
             <div class="callout callout-danger">
                 <h4>Karyawan yang akan KGB :</h4>
                 @foreach ($sortedDate as $kgb)
@@ -20,6 +25,13 @@
         @break
         @endif
     @endforeach
+
+    @if ( $flag == true )
+    <div class="callout callout-success">
+        <h4>Tidak ada KGB dalam 30 hari ke depan</h4>
+        <p>Tidak ada KGB dalam 30 hari ke depan.</p>
+    </div>
+    @endif
     
     <p class="btn bg-navy margin">Tanggal: <strong>{{ now()->isoFormat("D MMM YYYY") }} </strong></p>
     {{-- <p>Selisih tgl KGB dgn Hari ini:

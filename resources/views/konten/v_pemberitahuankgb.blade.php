@@ -11,7 +11,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-                <form role="form" action="{{ route('order') }}" method="post">     
+                <form role="form" action="{{ route('kirim') }}" method="post">     
                   @csrf               
                     <!-- select -->
                     
