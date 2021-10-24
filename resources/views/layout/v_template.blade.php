@@ -59,7 +59,8 @@
     </section> --}}
 
     <!-- Main content -->
-    <section class="content">    
+    <section class="content">   
+       
       @yield('konten')
     </section>
     <!-- /.content -->

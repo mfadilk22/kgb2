@@ -10,11 +10,13 @@ class ProsesController extends Controller
 {
     public function __construct()
     {
+        $this->data = new DataKGBModel();
         $this->tanggal = new DataKGBModel();
     }
 
     public function update(Request $request){
-        // dd($request);
+        $data = $this->data->sortedDate();
+        // DataKGBModel::find($id_peg)->update($request->all());
         // $tanggal = [
         //     "tanggal" => $this->KGBPegawai->prosestgl(),
         // ];

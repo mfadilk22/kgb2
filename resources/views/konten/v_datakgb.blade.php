@@ -44,12 +44,12 @@
                     @csrf
                 @foreach ($sortedDate as $kgb)
                     @if( Carbon\Carbon::parse($kgb->tgl_kgb)->diffInDays(now()) < 33 ) <tr>
-                        <td name = "nama" value = "{{ $kgb->nama }}">{{ $kgb->nama }}</td>
-                        <td name = "nip" value = "{{ $kgb->nip }}">{{ $kgb->nip }}</td>
+                        <td>{{ $kgb->nama }}</td>
+                        <td>{{ $kgb->nip }}</td>
                         <td>{{ $kgb->jk }}</td>
                         <td>{{ Carbon\Carbon::parse($kgb->tgl_kgb)->isoFormat("D MMM YYYY") }}</td>
                         <td>{{ $kgb->no_hp }}</td>
-                        <td><button href="#" type="submit" class="btn btn-block btn-success">Proses</a></td>
+                        <td><button href="{{ route('proses', $kgb->id_peg) }}" type="submit" class="btn btn-block btn-success">Proses</a></td>
                         </tr>
                     @endif
                 @endforeach

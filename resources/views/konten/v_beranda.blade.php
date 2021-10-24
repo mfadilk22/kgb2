@@ -2,6 +2,11 @@
 @section('judul', 'Beranda')
 
 @section('konten')
+@if(session()->has('success'))
+    <div class="alert alert-success">
+        {{ session()->get('success') }}
+    </div>
+@endif
 @php
     $flag = true;
 @endphp

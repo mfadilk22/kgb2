@@ -37,6 +37,7 @@ class PesanController extends Controller
                 }
             }
     }
-        return redirect()->route('beranda');
+        return redirect()->route('beranda')->with('message', 'Pesan Sudah Dikirim!');
+        
     }
 }
