@@ -40,8 +40,7 @@
                 </tr>
             </thead>
             <tbody class="box">
-                <form action="{{ route('proses') }}" method="post">
-                    @csrf
+                
                 @foreach ($sortedDate as $kgb)
                     @if( Carbon\Carbon::parse($kgb->tgl_kgb)->diffInDays(now()) < 33 ) <tr>
                         <td>{{ $kgb->nama }}</td>
@@ -49,11 +48,15 @@
                         <td>{{ $kgb->jk }}</td>
                         <td>{{ Carbon\Carbon::parse($kgb->tgl_kgb)->isoFormat("D MMM YYYY") }}</td>
                         <td>{{ $kgb->no_hp }}</td>
-                        <td><button href="{{ route('proses', $kgb->id_peg) }}" type="submit" class="btn btn-block btn-success">Proses</a></td>
+                        <td> <form action="{{ route('proses') }}" method="post">
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $kgb->id_peg }}">
+                            <button href="{{ route('proses') }}" type="submit" class="btn btn-block btn-success">Proses</a></td>
+                            </form>
                         </tr>
                     @endif
                 @endforeach
-            </form>
+            
             </tbody>
         </table>
         
