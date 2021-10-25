@@ -37,15 +37,15 @@ use Illuminate\Http\Request;
 Route::get('/', [AuthController::class,'showFormLogin'])->name('login');
 Route::get('/datakgb', [DataKGBController::class, "index"])->name('datakgb');
 Route::get('/pemberitahuankgb', [PemberitahuanKGBController::class, 'index'])->name('pemberitahuankgb');
-Route::get('/login', [AuthController::class,'showFormLogin'])->name('login');
-Route::post('/login', [AuthController::class,'login'])->name('isilogin');
+Route::get('login', [AuthController::class,'showFormLogin'])->name('login');
+Route::post('login', [AuthController::class,'login']);
 
-Route::get('/', [BerandaController::class, 'index']);
+// Route::get('/', [BerandaController::class, 'index']);
  
 Route::group(['middleware' => 'auth'], function () {
  
-    Route::get('/', [BerandaController::class, 'index'])->name('beranda');
-    Route::get('logout', [AuthController::class,'logout'])->name('logout'); 
+    Route::get('/beranda', [BerandaController::class, 'index'])->name('beranda');
+    Route::get('/logout', [AuthController::class,'logout'])->name('logout'); 
 });
 
 // Auth::routes();

@@ -17,5 +17,5 @@
         <i class="fa fa-envelope"></i> <span>Pemberitahuan KGB</span>
     </a>
 </li>
-<li class="skin-red"><a href="#"><i class="fa fa-remove"></i> Keluar</a></li>
+<li class="skin-red"><a href="{{ route('logout') }}"><i class="fa fa-remove"></i> Keluar</a></li>
 </ul>

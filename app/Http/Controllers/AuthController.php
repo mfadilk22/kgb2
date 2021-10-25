@@ -18,6 +18,7 @@ class AuthController extends Controller
     
     public function showFormLogin()
     {
+        
         if (Auth::check()) { // true sekalian session field di users nanti bisa dipanggil via Auth
             //Login Success
             return redirect()->route('beranda');
@@ -28,10 +29,10 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $rules = [
-            'id'                    => 'required',
+            'id'                    => 'required|integer',
             'password'              => 'required|string'
         ];
- 
+        
         $messages = [
             'id.required'           => 'ID wajib diisi',
             'password.required'     => 'Password wajib diisi',
@@ -39,35 +40,37 @@ class AuthController extends Controller
         ];
  
         $validator = Validator::make($request->all(), $rules, $messages);
- 
+        
         if($validator->fails()){
             return redirect()->back()->withErrors($validator)->withInput($request->all);
         }
  
         $data = [
-            'id'        => $request->id,
-            'password'  => $request->password,
+            'id'        => $request->input('id'),
+            'password'  => $request->input('password'),
         ];
 
-        // $credentials = $request->validate([
-        //     'id' => ['required'],
-        //     'password' => ['required'],
-        // ]);
-
-        // if (Auth::attempt($credentials)) {
+        $credentials = $request->validate([
+            'id' => ['required'],
+            'password' => ['required'],
+        ]);
+        
+        // dd($data);
+        // dd(Auth::attempt($data));
+        Auth::attempt($data);
+        // if (Auth::attempt($data)) {
         //     $request->session()->regenerate();
-
-        //     return redirect()->intended('beranda');
+        //     return redirect()->route('beranda');
         // }
         // dd($request);
         // dd($request->id);
-        Auth::attempt($data);
-        // dd(auth()->user());
+        // Auth::attempt($data);
+        // dd(Auth::attempt($data));
         
  
         if (Auth::check()) { // true sekalian session field di users nanti bisa dipanggil via Auth
             //Login Success
-            $request->session()->regenerate();
+            // $request->session()->regenerate();
             return redirect()->route('beranda');
  
         } 

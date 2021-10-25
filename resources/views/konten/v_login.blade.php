@@ -11,7 +11,7 @@
 <div class="login-box-body">
     <p class="login-box-msg"> </p>
 
-    <form method="post" action="{{ route('isilogin') }}">
+    <form method="post" action="{{ route('login') }}">
         @csrf
         <div class="card-body">
             @if(session('errors'))
@@ -38,7 +38,7 @@
                 </div>
             @endif
             <div class="form-group">
-                <label for=""><strong>Id</strong></label>
+                <label for=""><strong>ID</strong></label>
                 <input type="text" name="id" class="form-control" placeholder="Id pegawai">
             </div>
             <div class="form-group">
