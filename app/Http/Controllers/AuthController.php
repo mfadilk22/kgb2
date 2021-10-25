@@ -7,10 +7,15 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
-use App\Models\Admin;
+use App\Models\UserKGB;
 
 class AuthController extends Controller
 {
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
+    
     public function showFormLogin()
     {
         if (Auth::check()) { // true sekalian session field di users nanti bisa dipanggil via Auth
@@ -23,12 +28,12 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $rules = [
-            'user'                  => 'required|string',
+            'id'                    => 'required',
             'password'              => 'required|string'
         ];
  
         $messages = [
-            'user.required'         => 'Nama user wajib diisi',
+            'id.required'           => 'ID wajib diisi',
             'password.required'     => 'Password wajib diisi',
             'password.string'       => 'Password harus tidak cocok'
         ];
@@ -40,27 +45,40 @@ class AuthController extends Controller
         }
  
         $data = [
-            'user'      =>$request->user,
+            'id'        => $request->id,
             'password'  => $request->password,
         ];
-        
+
+        // $credentials = $request->validate([
+        //     'id' => ['required'],
+        //     'password' => ['required'],
+        // ]);
+
+        // if (Auth::attempt($credentials)) {
+        //     $request->session()->regenerate();
+
+        //     return redirect()->intended('beranda');
+        // }
+        // dd($request);
+        // dd($request->id);
         Auth::attempt($data);
-        dd($data);
+        // dd(auth()->user());
+        
  
         if (Auth::check()) { // true sekalian session field di users nanti bisa dipanggil via Auth
             //Login Success
+            $request->session()->regenerate();
             return redirect()->route('beranda');
  
         } 
         else { // false
  
             //Login Fail
-            Session::flash('error', 'User atau password salah');
+            Session::flash('error', 'Id atau password salah');
             return redirect()->route('login');
         } 
         
-    }
-    
+    }    
     
     public function logout()
     {

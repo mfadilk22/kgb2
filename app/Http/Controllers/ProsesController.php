@@ -30,7 +30,7 @@ class ProsesController extends Controller
         //     "tanggal" => $this->KGBPegawai->prosestgl(),
         // ];
         
-        return redirect()->route('beranda');
+        return redirect()->route('datakgb')->with('message', 'KGB Pegawai telah diproses');
         
     }
 }

@@ -25,8 +25,7 @@
                     @endif
                 @endforeach
                 
-                <p>Silakan melakukan proses KGB pada halaman halaman <a href="{{ route('datakgb') }}"><strong>Data KGB</strong></a></p>
-                <p>Mohon melakukan pemberitahuan kepada karyawan yang bersangkutan <a href="{{ route('pemberitahuankgb') }}"><strong>Pemberitahuan KGB</strong></a></p>
+                <p>Mohon melakukan pemberitahuan kepada karyawan yang bersangkutan di halaman <a href="{{ route('pemberitahuankgb') }}"><strong>Pemberitahuan KGB</strong></a></p>
             </div>
         @break
         @endif
